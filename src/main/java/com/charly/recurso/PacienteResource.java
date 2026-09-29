@@ -27,15 +27,15 @@ public class PacienteResource {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response actualizar(@PathParam("id") Long id, Paciente datos) {
+    public Response actualizar(@PathParam("id") Long id, Paciente pacienteActualizado) {
         Paciente paciente = Paciente.findById(id);
         if (paciente == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        paciente.nombre = datos.nombre;
-        paciente.apellido = datos.apellido;
-        paciente.dni = datos.dni;
-        paciente.edad = datos.edad;
+        paciente.nombre = pacienteActualizado.nombre;
+        paciente.apellido = pacienteActualizado.apellido;
+        paciente.dni = pacienteActualizado.dni;
+        paciente.edad = pacienteActualizado.edad;
         return Response.ok(paciente).build();
     }
 
@@ -50,4 +50,4 @@ public class PacienteResource {
         return Response.noContent().build();
     }
 }
-}
+
