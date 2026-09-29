@@ -1,70 +1,37 @@
-# gestion-api
+# 🏥 Gestión API - Java 21 & Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+API RESTful desarrollada con **Java 21** y **Quarkus 3.8**, utilizando **Hibernate ORM con Panache** para la persistencia en una base de datos **H2 (In-Memory)**.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Proyecto diseñado con enfoque de alto rendimiento, bajo consumo de recursos y preparado para despliegues en arquitectura nativa o contenedores.
 
-## Running the application in dev mode
+---
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+## 🛠️ Tecnologías Utilizadas
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+- **Java 21**: JDK LTS con soporte para Virtual Threads.
+- **Quarkus 3.8.3**: Framework Cloud-Native Java.
+- **Hibernate ORM con Panache**: Implementación simplificada del patrón Active Record.
+- **H2 Database**: Base de datos en memoria para entornos de desarrollo.
+- **Maven**: Gestión de dependencias y Build Tool.
+- **Git**: Control de versiones.
 
-## Packaging and running the application
+---
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## 🚀 Endpoints de la API (`/pacientes`)
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+| Método | Endpoint | Descripción | Estado HTTP |
+|---|---|---|---|
+| `GET` | `/pacientes` | Obtiene el listado completo de pacientes | `200 OK` |
+| `POST` | `/pacientes` | Registra un nuevo paciente | `201 Created` |
+| `PUT` | `/pacientes/{id}` | Actualiza los datos de un paciente | `200 OK` / `404 Not Found` |
+| `DELETE` | `/pacientes/{id}` | Elimina un paciente por ID | `204 No Content` / `404 Not Found` |
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+### Ejemplo de Body para `POST` / `PUT` (JSON):
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/gestion-api-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+```json
+{
+  "nombre": "Carlos",
+  "apellido": "Ugarte",
+  "dni": "12345678",
+  "edad": 46
+}
